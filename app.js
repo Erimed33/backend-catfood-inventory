@@ -1,18 +1,25 @@
 const express =require('express')
-
 const app = express();
+const cors = require('cors')
+const catFoodController = require('./Controllers/catFoodController')
 
-// arg endpoint
+// middleware
+app.use(cors())
+
+// arg endpoint - home
 app.get('/', (req, res) => {
     res.send('This is the main page')
 })
 
-app.get('/inventory', (req, res) => {
-    res.send('route to inventory')
+// resource to be routed to controller
+
+app.use('./catFood', catFoodController)
+
+
+// 404 page not found
+app.get('*', (req, res) => {
+    res.status(404).json({error: "Page not found"})
 })
 
-app.get('/controller', (req, res) => {
-    res.send('controller')
-})
-// reminder: create controllers and connect the aopropriatly
+
 module.exports = app
