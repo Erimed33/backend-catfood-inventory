@@ -7,7 +7,12 @@ app.get('/', (req, res) => {
     res.send('This is the main page')
 })
 
-// listens for request letting us know the server is on
-app.listen(4003, () => {
-    console.log(`Server is running on port 4003`)
+app.get('/inventory', (req, res) => {
+    res.send('route to inventory')
 })
+
+app.get('/controller', (req, res) => {
+    res.send('controller')
+})
+// reminder: create controllers and connect the aopropriatly
+module.exports = app
