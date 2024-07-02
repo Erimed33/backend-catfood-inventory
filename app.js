@@ -3,17 +3,19 @@ const app = express();
 const cors = require('cors')
 const catFoodController = require('./Controllers/catFoodController')
 
+
 // middleware
 app.use(cors())
+
+// resource to be routed to controller
+app.use('/catfood', catFoodController)
 
 // arg endpoint - home
 app.get('/', (req, res) => {
     res.send('This is the main page')
 })
 
-// resource to be routed to controller
 
-app.use('./catFood', catFoodController)
 
 
 // 404 page not found
