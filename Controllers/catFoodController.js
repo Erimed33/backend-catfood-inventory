@@ -8,7 +8,7 @@ catFood.get('/', (req, res) => {
     res.json(catFoodInventory)
 })
 
-// show route - only one cat food
+// SHOW route - only one cat food
 catFood.get('/:arrayIndex', (req, res) => {
     const { arrayIndex } = req.params
     if (catFoodInventory[arrayIndex]) {
@@ -18,7 +18,7 @@ catFood.get('/:arrayIndex', (req, res) => {
 }
 })
 
-// post creates new catfood
+//POST creates new catfood
 
 catFood.post('/', (req, res) => {
     const newCatFood = {
@@ -30,6 +30,21 @@ catFood.post('/', (req, res) => {
     res.status(201).json(newCatFood)
 
 })
+
+// delete 
+
+catFood.delete('/:arrayIndex', (req, res) => {
+    const { arrayIndex } = req.params
+    const deletedFood = catFoodInventory.splice(arrayIndex, 1
+    )
+    res.json(deletedFood[0])
+
+
+})
+
+// update
+
+
 
 
 
