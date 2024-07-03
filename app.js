@@ -6,6 +6,8 @@ const catFoodController = require('./Controllers/catFoodController')
 
 // middleware
 app.use(cors())
+app.use(express.json())
+
 
 // resource to be routed to controller
 app.use('/catfood', catFoodController)

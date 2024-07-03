@@ -11,13 +11,26 @@ catFood.get('/', (req, res) => {
 // show route - only one cat food
 catFood.get('/:arrayIndex', (req, res) => {
     const { arrayIndex } = req.params
-    res.json(catFoodInventory[arrayIndex])
+    if (catFoodInventory[arrayIndex]) {
+    res.status(200).json(catFoodInventory[arrayIndex])
+} else {
+    res.status(404).json({ error: "Cat food not found"})
+}
 })
 
-// get
-// app.get('/catFood/:index', (req, res) => {
-//     const { index } = req.params
-//     res.send( catFood[index] )
-// })
+// post creates new catfood
+
+catFood.post('/', (req, res) => {
+    const newCatFood = {
+        id: catFoodInventory.length + 1,
+    ...req.body
+    
+    }
+    catFoodInventory.push(newCatFood)
+    res.status(201).json(newCatFood)
+
+})
+
+
 
 module.exports = catFood
